@@ -29,10 +29,11 @@ const sketch = () => {
       const slice = degToRad(360 / num);
       const angle = slice * i;
 
-      x = cx + radius * Math.sin(angle);
-      y = cy + radius * Math.cos(angle);
+      x = radius * Math.sin(angle);
+      y = radius * Math.cos(angle);
 
       context.save();
+      context.translate(cx, cy);
       context.translate(x, y);
       context.rotate(-angle);
 
