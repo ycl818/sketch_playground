@@ -48,6 +48,18 @@ const sketch = () => {
       context.rect(-w / 2, -h / 2, w, h);
       context.fill();
       context.restore();
+
+      // new circle
+      context.save();
+      context.translate(cx, cy);
+      context.rotate(-angle);
+
+      context.beginPath();
+      //  arc ( , , radius, starting angle, ending angle )
+      context.arc(0, 0, radius, 0, slice * 0.6);
+      context.stroke();
+
+      context.restore();
     }
   };
 };
