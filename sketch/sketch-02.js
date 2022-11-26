@@ -16,7 +16,7 @@ const settings = {
 
 const sketch = () => {
   return ({ context, width, height }) => {
-    context.fillStyle = "#333";
+    context.fillStyle = "white";
     context.fillRect(0, 0, width, height);
 
     context.fillStyle = "black";
@@ -27,7 +27,7 @@ const sketch = () => {
     const w = width * 0.01;
     const h = height * 0.1;
 
-    const num = 12;
+    const num = 15;
     const radius = width * 0.3;
     let x, y;
 
@@ -42,23 +42,41 @@ const sketch = () => {
       context.translate(cx, cy);
       context.translate(x, y);
       context.rotate(-angle);
-      context.scale(random.range(1, 3), 1);
+      context.scale(random.range(0.1, 2), random.range(0.2, 0.8));
 
       context.beginPath();
-      context.rect(-w / 2, -h / 2, w, h);
+      context.rect(random.range(0, -w * 0.5), random.range(0, -h * 0.5), w, h);
+      context.fillStyle = `rgb(
+        ${Math.floor(255 - random.range(1, 42) * i)},
+        ${Math.floor(255 - random.range(1, 42) * i)},
+        ${Math.floor(255 - random.range(1, 42) * i)}`;
       context.fill();
       context.restore();
 
       // new circle
       context.save();
+
       context.translate(cx, cy);
       context.rotate(-angle);
 
+      context.lineWidth = random.range(5, 20);
+
       context.beginPath();
       //  arc ( , , radius, starting angle, ending angle )
-      context.arc(0, 0, radius, 0, slice * 0.6);
-      context.stroke();
+      context.arc(
+        0,
+        0,
+        radius * random.range(0.7, 1.3),
+        slice * random.range(1, -8),
+        slice * random.range(1, 5)
+      );
 
+      context.strokeStyle = `rgb(
+        ${Math.floor(255 - random.range(1, 42) * i)},
+        ${Math.floor(255 - random.range(1, 42) * i)},${Math.floor(
+        255 - random.range(1, 42) * i
+      )}`;
+      context.stroke();
       context.restore();
     }
   };
