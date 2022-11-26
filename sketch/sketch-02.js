@@ -8,6 +8,10 @@ const degToRad = (degrees) => {
   return (degrees / 180) * Math.PI;
 };
 
+const randomRange = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
+
 const sketch = () => {
   return ({ context, width, height }) => {
     context.fillStyle = "#333";
@@ -36,6 +40,7 @@ const sketch = () => {
       context.translate(cx, cy);
       context.translate(x, y);
       context.rotate(-angle);
+      context.scale(randomRange(1, 3), 1);
 
       context.beginPath();
       context.rect(-w / 2, -h / 2, w, h);
